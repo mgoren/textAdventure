@@ -1,0 +1,28 @@
+<p>{{room.description}}</p>
+
+<div ng-show="room.choice === 'help'">
+  <p>Use commands such as look north, look at door, go north, or take item. Type inventory to look at your inventory or hp to look at your hit points.</p>
+</div>
+
+<div ng-show="room.choice === 'inventory'">
+  <div ng-show="user.inventory.length">
+    <h5>Inventory</h5>
+    <ul>
+      <li ng-repeat="item in user.inventory">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+  <div ng-show="!user.inventory.length">
+    <h5>You have nothing.</h5>
+  </div>
+</div>
+
+<span class="display-choice"></span>
+
+<form ng-submit="choice()" class="form-inline" role="form">
+  <div class="form-group">
+    <input type="text" ng-model="userChoice" class="form-control" placeholder="What do you do?" autofocus required>
+  </div>
+  <button type="submit" class="btn btn-default btn-sm">Go!</button>
+</form>

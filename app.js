@@ -10,8 +10,8 @@ rpg.config(function($stateProvider) {
 
   $stateProvider.state('room1', {
     url: "room1",
-    templateUrl: "partials/room1.html",
-    controller: "UserCtrl"
+    templateUrl: "partials/room.html",
+    controller: "Room1Ctrl"
   });
 
 });

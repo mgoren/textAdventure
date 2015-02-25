@@ -2,17 +2,21 @@
 <html lang="en" ng-app="rpg">
   <head>
     <meta charset="UTF-8">
-    <title>RPG</title>
+    <title>Best Text Adventure</title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
     <script src="services/UserFactory.js"></script>
+    <script src="services/RoomFactory.js"></script>
     <script src="controllers/UserController.js"></script>
+    <script src="controllers/Room1Controller.js"></script>
     <link rel="stylesheet" href="css/bootstrap-paper.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
     <div class="container">
+      <h1>Best Text Adventure</h1>
       <div ui-view></div>
     </div>
   </body>
