@@ -8,6 +8,12 @@ rpg.config(function($stateProvider) {
     controller: "UserCtrl"
   });
 
+  $stateProvider.state('hell', {
+    url: "hell",
+    templateUrl: "partials/hell.html",
+    controller: "UserCtrl"
+  })
+
   $stateProvider.state('room1', {
     url: "room1",
     templateUrl: "partials/room.html",
@@ -20,11 +26,12 @@ rpg.config(function($stateProvider) {
     controller: "Room2Ctrl"
   })
 
-  $stateProvider.state('hell', {
-    url: "hell",
-    templateUrl: "partials/hell.html",
-    controller: "UserCtrl"
+  $stateProvider.state('room6', {
+    url: "room6",
+    templateUrl: "partials/room.html",
+    controller: "Room6Ctrl"
   })
+
 
 
 

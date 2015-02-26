@@ -2,6 +2,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
   var factory= {};
   factory.RoomsFactory = RoomsFactory;
   factory.UserFactory = UserFactory;
+  factory.user = UserFactory.user;
   factory.utilities = {
     checkItem: function(room, item) {
       if (room.indexOf(item) !== -1) {
@@ -14,14 +15,18 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
     takeItem: function(room, item) {
       if (room.indexOf(item) !== -1) {
         if(item.substring(2) === "gold pieces") {
-          factory.UserFactory.user.gp += parseInt(item[0]);
+          factory.user.gp += parseInt(item[0]);
           alert("You found " + item + "!");
-        } else {
-          factory.UserFactory.user.inventory.push(item);
+          room.splice(room.indexOf(item), 1);
+          return true;
+        } else if ( (factory.user.inventory.indexOf("backpack") !== -1) || (factory.user.inventory.length < 2) ) {
+          factory.user.inventory.push(item);
           alert("You now have " + item + "!");
+          room.splice(room.indexOf(item), 1);
+          return true;
+        } else {
+          alert("You only have two hands!");
         }
-        room.splice(room.indexOf(item), 1);
-        return true;
       } else {
         alert("You already have taken " + item + ". Don't be greedy!");
         return false;
@@ -29,10 +34,14 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
     },
 
     subtractHP: function(hp) {
-      factory.UserFactory.user.hp -= hp;
-      if (factory.UserFactory.user.hp < 1) {
+      factory.user.hp -= hp;
+      if (factory.user.hp < 1) {
         $state.go("hell");
       }
+    },
+
+    addHP: function(hp) {
+      factory.user.hp += hp;
     }
   };
   return factory;

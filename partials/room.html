@@ -1,3 +1,9 @@
+<div id="animation">
+<div id="animation2">
+</div>
+</div>
+
+
 <div class="score">
   Name: {{user.name}}<br>
   HP: {{user.hp}}<br>
@@ -7,7 +13,7 @@
 <p>{{room.description}}</p>
 
 <div ng-show="room.choice === 'help'">
-  <p>Use commands such as look north, look at door, go north, or take item. Type inventory to look at your inventory or hp to look at your hit points.</p>
+  <p>Use two word commands such as look direction, look item, go direction, take item, or dig item.. Type inventory to look at your inventory.</p>
 </div>
 
 <div ng-show="room.choice === 'inventory'">
@@ -23,6 +29,11 @@
     <h5>You have nothing.</h5>
   </div>
 </div>
+
+<div ng-show="room.choice === 'fuck you'">
+  <p>Such language!</p>
+</div>
+
 
 <span class="display-choice"></span>
 

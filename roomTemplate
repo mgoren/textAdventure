@@ -1,0 +1,54 @@
+rpg.controller('RoomXCtrl', function RoomXCtrl($scope, $state, UserFactory, RoomsFactory, UtilitiesFactory) {
+  $scope.UtilitiesFactory = UtilitiesFactory;
+  $scope.utilities = UtilitiesFactory.utilities;
+  $scope.UserFactory = UserFactory;
+  $scope.user = UserFactory.user;
+  $scope.RoomsFactory = RoomsFactory;
+  $scope.rooms = RoomsFactory.rooms;
+  $scope.room = $scope.rooms.roomX;
+  $("input").focus();
+
+  $scope.room.description = ""
+
+  $scope.choice = function() {
+    $scope.room.choice = $scope.userChoice;
+    $scope.userChoice = null;
+    $(".display-choice").empty();
+    $("input").focus();
+
+    switch($scope.room.choice) {
+      case "look north":
+
+        break;
+      case "look south":
+
+        break;
+      case "look east":
+
+        break;
+      case "look west":
+
+        break;
+      case "go north":
+
+        break;
+      case "go south":
+
+        break;
+      case "go east":
+
+        break;
+      case "go west":
+
+        break;
+
+      case "help":
+      case "inventory":
+        break;
+      default:
+        $(".display-choice").text("I do not know how to do this. Try asking for help.");
+    }
+
+  };
+
+});
