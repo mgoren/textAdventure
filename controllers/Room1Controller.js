@@ -14,9 +14,26 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
     switch($scope.room.choice) {
       case "look at rags":
         if($scope.rooms.room1.indexOf("crowbar") != -1) {
-          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
+          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt. You think you see something shiny but you would have to dig through the rags to be sure.");
         } else {
           $(".display-choice").text("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
+        }
+        break;
+      case "dig through rags":
+        if($scope.rooms.room1.indexOf("3 gold pieces") != -1) {
+          $(".display-choice").text("You found 3 GP! You become sick and lose 1 HP.");
+          $scope.rooms.room1.splice($scope.rooms.room1.indexOf("3 gold pieces"),1);
+          $scope.user.gp += 3;
+          $scope.user.hp -= 1;
+          if($scope.user.hp < 1) {
+            $state.go("hell");
+          }
+        } else {
+          $(".display-choice").text("You become sick and lose 1 HP.");
+          $scope.user.hp -= 1;
+          if($scope.user.hp < 1) {
+            $state.go("hell");
+          }
         }
         break;
       case "take crowbar":
