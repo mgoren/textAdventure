@@ -10,7 +10,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
         return false;
       }
     },
-    
+
     takeItem: function(room, item) {
       if (room.indexOf(item) !== -1) {
         if(item.substring(2) === "gold pieces") {
@@ -18,7 +18,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
           alert("You found " + item + "!");
         } else {
           factory.UserFactory.user.inventory.push(item);
-          alert("You now have " + item);
+          alert("You now have " + item + "!");
         }
         room.splice(room.indexOf(item), 1);
         return true;

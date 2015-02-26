@@ -13,6 +13,7 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
   $scope.choice = function() {
     $scope.room.choice = $scope.userChoice;
     $scope.userChoice = null;
+    $(".display-choice").empty();
 
     switch($scope.room.choice) {
       case "look at rags":
@@ -23,38 +24,24 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         }
         break;
       case "dig through rags":
-        if($scope.rooms.room1.indexOf("3 gold pieces") != -1) {
+        if($scope.utilities.takeItem($scope.room1, "3 gold pieces")) {
           $(".display-choice").text("You found 3 GP! You become sick and lose 1 HP.");
-          // $scope.rooms.room1.splice($scope.rooms.room1.indexOf("3 gold pieces"),1);
-          // $scope.UtilitiesFactory.utilities.deleteItem($scope.rooms.room1, "3 gold pieces");
-          $scope.user.gp += 3;
-          $scope.user.hp -= 1;
-          if($scope.user.hp < 1) {
-            $state.go("hell");
-          }
         } else {
           $(".display-choice").text("You become sick and lose 1 HP.");
-          $scope.user.hp -= 1;
-          if($scope.user.hp < 1) {
-            $state.go("hell");
-          }
+        }
+        $scope.user.hp -= 1;
+        if($scope.user.hp < 1) {
+          $state.go("hell");
         }
         break;
       case "take crowbar":
         if ($scope.utilities.takeItem($scope.room1, "crowbar")) {
           $(".display-choice").text("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
-        } else {
-          $(".display-choice").empty();
         }
         break;
       case "take rags":
-        if ($scope.user.inventory.indexOf("dirty rags") === -1) {
-          $scope.user.inventory.push("dirty rags");
+        if ($scope.utilities.takeItem($scope.room1, "dirty rags")) {
           $(".display-choice").text("You see the pile of greasy rags and you think they might come in handy.");
-          alert("Your inventory now includes some dirty rags!");
-        } else {
-          $(".display-choice").empty();
-          alert("How many dirty rags do you really require?");
         }
         break;
       case "look north":

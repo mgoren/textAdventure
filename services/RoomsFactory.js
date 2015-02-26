@@ -1,7 +1,7 @@
 rpg.factory('RoomsFactory', function RoomsFactory() {
   var factory = {};
   factory.rooms = {
-    room1: ["crowbar", "rags", "3 gold pieces"],
+    room1: ["crowbar", "dirty rags", "3 gold pieces"],
     room2: [],
     room3: [],
     room4: [],
