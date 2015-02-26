@@ -1,8 +1,9 @@
-rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, RoomFactory) {
-  $scope.room = RoomFactory.room;
-  $scope.RoomFactory = RoomFactory;
+rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, RoomsFactory) {
+  $scope.rooms = RoomsFactory.rooms;
+  $scope.RoomsFactory = RoomsFactory;
   $scope.user = UserFactory.user;
   $scope.UserFactory = UserFactory;
+  $scope.room = {};
 
   $scope.room.description = "You are in an open field. There is a pile of dirty rags on the ground."
 
@@ -12,11 +13,16 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
 
     switch($scope.room.choice) {
       case "look at rags":
-        $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
+        if($scope.rooms.room1.indexOf("crowbar") != -1) {
+          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
+        } else {
+          $(".display-choice").text("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
+        }
         break;
       case "take crowbar":
         if ($scope.user.inventory.indexOf("crowbar") === -1) {
           $scope.user.inventory.push("crowbar");
+          $scope.rooms.room1.splice($scope.rooms.room1.indexOf("crowbar"),1);
           $(".display-choice").text("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
           alert("Your inventory now includes a rusted crowbar!");
         } else {
@@ -46,13 +52,16 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         $state.go('room2');
         break;
       case "go east":
-        $state.go('room3');
+        // $state.go('room3');
+        alert("It is not wise to go this way! GO BACK!");
         break;
       case "go south":
-        $state.go('room4');
+        // $state.go('room4');
+        alert("It is not wise to go this way! GO BACK!");
         break;
       case "go west":
-        $state.go('room5');
+        // $state.go('room5');
+        alert("It is not wise to go this way! GO BACK!");
         break;
     }
 
