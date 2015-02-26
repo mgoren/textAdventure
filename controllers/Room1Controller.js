@@ -1,9 +1,12 @@
-rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, RoomsFactory) {
+rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, RoomsFactory, UtilitiesFactory) {
   $scope.rooms = RoomsFactory.rooms;
   $scope.RoomsFactory = RoomsFactory;
   $scope.user = UserFactory.user;
   $scope.UserFactory = UserFactory;
+  $scope.UtilitiesFactory = UtilitiesFactory;
+  $scope.utilities = UtilitiesFactory.utilities;
   $scope.room = {};
+  $scope.room1 = RoomsFactory.rooms.room1;
 
   $scope.room.description = "You are in an open field. There is a pile of dirty rags on the ground."
 
@@ -13,7 +16,7 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
 
     switch($scope.room.choice) {
       case "look at rags":
-        if($scope.rooms.room1.indexOf("crowbar") != -1) {
+        if($scope.utilities.checkItem($scope.room1, "crowbar")) {
           $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt. You think you see something shiny but you would have to dig through the rags to be sure.");
         } else {
           $(".display-choice").text("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
@@ -22,7 +25,8 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
       case "dig through rags":
         if($scope.rooms.room1.indexOf("3 gold pieces") != -1) {
           $(".display-choice").text("You found 3 GP! You become sick and lose 1 HP.");
-          $scope.rooms.room1.splice($scope.rooms.room1.indexOf("3 gold pieces"),1);
+          // $scope.rooms.room1.splice($scope.rooms.room1.indexOf("3 gold pieces"),1);
+          // $scope.UtilitiesFactory.utilities.deleteItem($scope.rooms.room1, "3 gold pieces");
           $scope.user.gp += 3;
           $scope.user.hp -= 1;
           if($scope.user.hp < 1) {
@@ -37,14 +41,10 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         }
         break;
       case "take crowbar":
-        if ($scope.user.inventory.indexOf("crowbar") === -1) {
-          $scope.user.inventory.push("crowbar");
-          $scope.rooms.room1.splice($scope.rooms.room1.indexOf("crowbar"),1);
+        if ($scope.utilities.takeItem($scope.room1, "crowbar")) {
           $(".display-choice").text("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
-          alert("Your inventory now includes a rusted crowbar!");
         } else {
           $(".display-choice").empty();
-          alert("You have already taken the crowbar!");
         }
         break;
       case "take rags":
