@@ -19,7 +19,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
           alert("You found " + item + "!");
           room.splice(room.indexOf(item), 1);
           return true;
-        } else if ( (factory.user.inventory.indexOf("backpack") !== -1) || (factory.user.inventory.length < 2) ) {
+        } else if ( (factory.user.inventory.indexOf("backpack") !== -1) || (factory.user.inventory.length < 2) || item === "backpack") {
           factory.user.inventory.push(item);
           alert("You now have " + item + "!");
           room.splice(room.indexOf(item), 1);

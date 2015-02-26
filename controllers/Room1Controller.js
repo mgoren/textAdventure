@@ -66,6 +66,8 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         alert("It is not wise to go this way! GO BACK!");
         break;
       case "fuck you":
+        $(".display-choice").text("I will smite you for that language! Lose 1 HP.")
+        $scope.utilities.subtractHP(1);
       case "help":
       case "inventory":
         break;
