@@ -4,6 +4,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
   factory.UserFactory = UserFactory;
   factory.user = UserFactory.user;
   factory.utilities = {
+
     checkItem: function(room, item) {
       if (room.indexOf(item) !== -1) {
         return true;
@@ -33,6 +34,14 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
       }
     },
 
+    inInventory: function(item) {
+      if (factory.user.inventory.indexOf(item) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
     subtractHP: function(hp) {
       factory.user.hp -= hp;
       if (factory.user.hp < 1) {
@@ -43,6 +52,7 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
     addHP: function(hp) {
       factory.user.hp += hp;
     }
+
   };
   return factory;
 

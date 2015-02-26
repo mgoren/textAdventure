@@ -12,6 +12,10 @@
 
 <p>{{room.description}}</p>
 
+<div ng-show="room.choice === 'look'">
+  <p>Try looking at something specific.</p>
+</div>
+
 <div ng-show="room.choice === 'help'">
   <p>Use two word commands such as look direction, look item, go direction, take item, or dig item.. Type inventory to look at your inventory.</p>
 </div>
@@ -34,7 +38,8 @@
 
 <form ng-submit="choice()" class="form-inline" role="form">
   <div class="form-group">
-    <input type="text" ng-model="userChoice" class="form-control" placeholder="What do you do?" autofocus required>
+    <label class="form-label">What do you do?</label>
+    <input type="text" ng-model="userChoice" class="form-control" autofocus required>
   </div>
-  <button type="submit" class="btn btn-default btn-sm">Go!</button>
+  <!-- <button type="submit" class="btn btn-default btn-sm">Go!</button> -->
 </form>

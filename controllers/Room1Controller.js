@@ -18,8 +18,12 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
 
     switch($scope.room.choice) {
       case "look rags":
-        if($scope.utilities.checkItem($scope.room, "crowbar")) {
+        if( ($scope.utilities.checkItem($scope.room, "crowbar")) && ($scope.utilities.checkItem($scope.room, "3 gold pieces")) ) {
           $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt. You think you see something shiny but you would have to dig through the rags to be sure.");
+        } else if ($scope.utilities.checkItem($scope.room, "crowbar")) {
+          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
+        } else if ($scope.utilities.checkItem($scope.room, "3 gold pieces")) {
+          $(".display-choice").text("You think you see something shiny but you would have to dig through the rags to be sure.");
         } else {
           $(".display-choice").text("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
         }
@@ -36,6 +40,10 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         if ($scope.utilities.takeItem($scope.room, "crowbar")) {
           $(".display-choice").text("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
         }
+        break;
+      case "smell rags":
+        $(".display-choice").text("The rags smell oily. You want a bath. Lose 1 HP.");
+        $scope.utilities.subtractHP(1);
         break;
       case "take rags":
         if ($scope.utilities.takeItem($scope.room, "dirty rags")) {
@@ -65,11 +73,20 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         // $state.go('room5');
         alert("It is not wise to go this way! GO BACK!");
         break;
+      case "swing crowbar":
+      case "use crowbar":
+        if ($scope.utilities.inInventory("crowbar")) {
+          $(".display-choice").text("You swing the crowbar and hit air.");
+        } else {
+          $(".display-choice").text("You don't have a crowbar!");
+        }
+        break;
       case "fuck you":
         $(".display-choice").text("I will smite you for that language! Lose 1 HP.")
         $scope.utilities.subtractHP(1);
       case "help":
       case "inventory":
+      case "look":
         break;
       default:
         $(".display-choice").text("I do not know how to do this. Try asking for help.");

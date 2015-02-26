@@ -17,7 +17,7 @@ rpg.controller('Room2Ctrl', function Room2Ctrl($scope, $state, UserFactory, Room
     $("input").focus();
 
     switch($scope.room.choice) {
-      case "jump in hole":
+      case "jump hole":
         $scope.user.hp = 0;
         alert("YOU DIED");
         $state.go('hell');

@@ -1,11 +1,42 @@
-/*
-  .form-inline .form-control {
-    width: 400px !important;
-    margin-bottom: 20px;
-  }*/
+html, body {
+  font-family: 'VT323';
+  font-size: 150%;
+  background-color: black;
+  color: white;
+}
 
 .score {
   border: 3px solid;
   padding: 10px;
-  margin: 15px;
+  margin: 15px 0;
+  font-size: 16px;
+  line-height: 100%;
+  width: 28em;
+}
+
+html, input, button {
+  text-transform: uppercase;
+}
+
+input {
+  margin: 50px 0 !important;
+  color: white !important;
+}
+
+h1, h2, h3, h4, h5, li {
+  color: inherit;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  font-size: 16px;
+}
+
+.form-inline .form-control {
+  width: 400px !important;
+  margin-bottom: 20px;
 }

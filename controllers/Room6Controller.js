@@ -20,6 +20,7 @@ rpg.controller('Room6Ctrl', function Room6Ctrl($scope, $state, UserFactory, Room
       case "smell flowers":
         $(".display-choice").text("The smell intoxicates you and burns your nose a bit. You think it might be tasty.");
         break;
+      case "taste flowers":
       case "eat flowers":
         $(".display-choice").text("You trip out!");
         $scope.utilities.addHP(2);
@@ -67,30 +68,29 @@ rpg.controller('Room6Ctrl', function Room6Ctrl($scope, $state, UserFactory, Room
         $(".display-choice").text("You see a menacing tall castle wall.");
         break;
       case "go north":
-        $("body").css("background-color", "white");
+        $("body").css("background-color", "black");
         $("#animation").removeClass("foo");
         $("#animation2").removeClass("bar");
         $alert("You are ill prepared to make such a journey! Go back!")
         break;
       case "go south":
-        $("body").css("background-color", "white");
+        $("body").css("background-color", "black");
         $("#animation").removeClass("foo");
         $("#animation2").removeClass("bar");
         $alert("Why would you want to go here? Rethink this decision!")
         break;
       case "go east":
-        $("body").css("background-color", "white");
+        $("body").css("background-color", "black");
         $("#animation").removeClass("foo");
         $("#animation2").removeClass("bar");
         $state.go("room2");
         break;
       case "go west":
-        $("body").css("background-color", "white");
+        $("body").css("background-color", "black");
         $("#animation").removeClass("foo");
         $("#animation2").removeClass("bar");
         $alert("You are really ill prepared to make such a journey! Go back!")
         break;
-
       case "help":
       case "inventory":
         break;
