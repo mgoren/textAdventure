@@ -29,10 +29,7 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
         } else {
           $(".display-choice").text("You become sick and lose 1 HP.");
         }
-        $scope.user.hp -= 1;
-        if($scope.user.hp < 1) {
-          $state.go("hell");
-        }
+        $scope.utilities.subtractHP(1);
         break;
       case "take crowbar":
         if ($scope.utilities.takeItem($scope.room1, "crowbar")) {

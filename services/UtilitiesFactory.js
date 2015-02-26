@@ -1,4 +1,4 @@
-rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFactory) {
+rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFactory, $state) {
   var factory= {};
   factory.RoomsFactory = RoomsFactory;
   factory.UserFactory = UserFactory;
@@ -25,6 +25,13 @@ rpg.factory('UtilitiesFactory', function UtilitiesFactory(RoomsFactory, UserFact
       } else {
         alert("You already have taken " + item + ". Don't be greedy!");
         return false;
+      }
+    },
+
+    subtractHP: function(hp) {
+      factory.UserFactory.user.hp -= hp;
+      if (factory.UserFactory.user.hp < 1) {
+        $state.go("hell");
       }
     }
   };
