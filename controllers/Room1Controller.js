@@ -19,77 +19,81 @@ rpg.controller('Room1Ctrl', function Room1Ctrl($scope, $state, UserFactory, Room
     switch($scope.room.choice) {
       case "look rags":
         if( ($scope.utilities.checkItem($scope.room, "crowbar")) && ($scope.utilities.checkItem($scope.room, "3 gold pieces")) ) {
-          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt. You think you see something shiny but you would have to dig through the rags to be sure.");
+          $scope.utilities.displayChoice("You search through the dirty rags and find a crowbar. Also, you are covered in dirt. You think you see something shiny but you would have to dig through the rags to be sure.");
         } else if ($scope.utilities.checkItem($scope.room, "crowbar")) {
-          $(".display-choice").text("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
+          $scope.utilities.displayChoice("You search through the dirty rags and find a crowbar. Also, you are covered in dirt.");
         } else if ($scope.utilities.checkItem($scope.room, "3 gold pieces")) {
-          $(".display-choice").text("You think you see something shiny but you would have to dig through the rags to be sure.");
+          $scope.utilities.displayChoice("You think you see something shiny but you would have to dig through the rags to be sure.");
         } else {
-          $(".display-choice").text("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
+          $scope.utilities.displayChoice("You search through the dirty rags and find... dirty rags. Also, you are covered in even more dirt.");
         }
         break;
       case "dig rags":
         if($scope.utilities.takeItem($scope.room, "3 gold pieces")) {
-          $(".display-choice").text("You found 3 GP! You become sick and lose 1 HP.");
+          $scope.utilities.displayChoice("You found 3 GP! You become sick and lose 1 HP.");
         } else {
-          $(".display-choice").text("You become sick and lose 1 HP.");
+          $scope.utilities.displayChoice("You become sick and lose 1 HP.");
         }
         $scope.utilities.subtractHP(1);
         break;
       case "take crowbar":
         if ($scope.utilities.takeItem($scope.room, "crowbar")) {
-          $(".display-choice").text("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
+          $scope.utilities.displayChoice("You dug through the greasy rags and pulled out a rusted crowbar. Congratulations.");
         }
         break;
       case "smell rags":
-        $(".display-choice").text("The rags smell oily. You want a bath. Lose 1 HP.");
+        $scope.utilities.displayChoice("The rags smell oily. You want a bath. Lose 1 HP.");
         $scope.utilities.subtractHP(1);
         break;
       case "take rags":
         if ($scope.utilities.takeItem($scope.room, "dirty rags")) {
-          $(".display-choice").text("You see the pile of greasy rags and you think they might come in handy.");
+          $scope.utilities.displayChoice("You see the pile of greasy rags and you think they might come in handy.");
         }
         break;
       case "look north":
-        $(".display-choice").text("You see a dark hole in the distance.");
+        $scope.utilities.displayChoice("You see a dark hole in the distance.");
         break;
       case "look south":
       case "look east":
       case "look west":
-        $(".display-choice").text("You see field.");
+        $scope.utilities.displayChoice("You see a pack of rabid wolves.");
         break;
       case "go north":
         $state.go('room2');
         break;
       case "go east":
         // $state.go('room3');
-        alert("It is not wise to go this way! GO BACK!");
+        $scope.utilities.displayDanger("It is not wise to go this way! GO BACK!");
         break;
       case "go south":
         // $state.go('room4');
-        alert("It is not wise to go this way! GO BACK!");
+        $scope.utilities.displayDanger("It is not wise to go this way! GO BACK!");
         break;
       case "go west":
         // $state.go('room5');
-        alert("It is not wise to go this way! GO BACK!");
+        $scope.utilities.displayDanger("It is not wise to go this way! GO BACK!");
         break;
       case "swing crowbar":
       case "use crowbar":
         if ($scope.utilities.inInventory("crowbar")) {
-          $(".display-choice").text("You swing the crowbar and hit air.");
+          $scope.utilities.displayChoice("You swing the crowbar and hit air.");
         } else {
-          $(".display-choice").text("You don't have a crowbar!");
+          $scope.utilities.displayChoice("You don't have a crowbar!");
         }
         break;
       case "fuck you":
-        $(".display-choice").text("I will smite you for that language! Lose 1 HP.")
+        $scope.utilities.displayChoice("I will smite you for that language! Lose 1 HP.")
         $scope.utilities.subtractHP(1);
+      case "go left":
+      case "go right":
+        $scope.utilities.displayDanger("Use cardinal directions.");
+        break;
       case "help":
       case "inventory":
       case "look":
         break;
       default:
-        $(".display-choice").text("I do not know how to do this. Try asking for help.");
+        $scope.utilities.displayChoice("I do not know how to do this. Try asking for help.");
     }
 
   };

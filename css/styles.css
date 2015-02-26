@@ -14,6 +14,18 @@ html, body {
   width: 28em;
 }
 
+.display-danger {
+  color: red;
+}
+
+.display-item {
+  color: cornflowerblue;
+}
+
+.display-gold {
+  color: yellow;
+}
+
 html, input, button {
   text-transform: uppercase;
 }

@@ -12,6 +12,14 @@
 
 <p>{{room.description}}</p>
 
+<form ng-submit="choice()" class="form-inline" role="form">
+  <div class="form-group">
+    <label class="form-label">What do you do?</label>
+    <input type="text" ng-model="userChoice" class="form-control" autofocus required>
+  </div>
+  <!-- <button type="submit" class="btn btn-default btn-sm">Go!</button> -->
+</form>
+
 <div ng-show="room.choice === 'look'">
   <p>Try looking at something specific.</p>
 </div>
@@ -34,12 +42,7 @@
   </div>
 </div>
 
-<span class="display-choice"></span>
-
-<form ng-submit="choice()" class="form-inline" role="form">
-  <div class="form-group">
-    <label class="form-label">What do you do?</label>
-    <input type="text" ng-model="userChoice" class="form-control" autofocus required>
-  </div>
-  <!-- <button type="submit" class="btn btn-default btn-sm">Go!</button> -->
-</form>
+<div class="display-choice"></div>
+<div class="display-item"></div>
+<div class="display-gold"></div>
+<div class="display-danger"></div>
