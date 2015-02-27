@@ -6,4 +6,7 @@ rpg.controller('UserCtrl', function UserCtrl($scope, $state, UserFactory) {
     $scope.userName = null;
     $state.go('room1');
   };
+  $scope.beginAgain = function() {
+    $state.go('home');
+  };
 });

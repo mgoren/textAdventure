@@ -24,8 +24,12 @@
   <p>Try looking at something specific.</p>
 </div>
 
+<div ng-show="room.choice === 'take item'">
+  <p>There is no item known as item here.</p>
+</div>
+
 <div ng-show="room.choice === 'help'">
-  <p>Use two word commands such as look direction, look item, go direction, take item, or dig item.. Type inventory to look at your inventory.</p>
+  <p>Use two word commands such as look direction, look item, go direction, take item, or verb item. Type inventory to look at your inventory.</p>
 </div>
 
 <div ng-show="room.choice === 'inventory'">

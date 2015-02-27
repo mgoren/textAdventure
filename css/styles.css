@@ -63,3 +63,7 @@ iframe {
   height: 2000px;
   margin-left: -30;
 }
+
+#beginAgain {
+  margin: 20px 0;
+}

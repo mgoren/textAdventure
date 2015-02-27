@@ -20,6 +20,7 @@ rpg.controller('Room2Ctrl', function Room2Ctrl($scope, $state, UserFactory, Room
       case "jump hole":
       case "go hole":
       case "go down":
+      case "eat hole":
         $scope.user.hp = 0;
         $scope.utilities.displayDanger("YOU DIED");
         $state.go('hell');
@@ -33,6 +34,7 @@ rpg.controller('Room2Ctrl', function Room2Ctrl($scope, $state, UserFactory, Room
         break;
       case "scale hole":
       case "climb hole":
+      case "climb down":
         if($scope.utilities.inInventory("rope")) {
           $state.go('tunnel');
         } else
@@ -52,26 +54,45 @@ rpg.controller('Room2Ctrl', function Room2Ctrl($scope, $state, UserFactory, Room
         $scope.utilities.displayChoice("In the distance you see some interesting bushes.");
         break;
       case "go north":
+      case "move north":
         $scope.utilities.displayChoice("We already told you...You cannot pass!");
         break;
       case "go east":
+      case "move east":
         $scope.utilities.displayDanger("The forest is impenetrable you cannot pass!");
         break;
       case "go south":
+      case "move south":
         $state.go('room1');
         break;
       case "go west":
+      case "move west":
         $state.go('room6');
         break;
+
+
       case "fuck you":
         $scope.utilities.displayChoice("I will smite you for that language! Lose 1 HP.")
         $scope.utilities.subtractHP(1);
+      case "go to sleep":
+      case "go sleep":
+      case "take nap":
+      case "lay down":
+      case "lie down":
+      case "take rest":
+      case "rest":
+      case "sleep":
+      case "nap":
+        $scope.utilities.displayChoice("You've just begun. No rest for the weary.")
+        break;
       case "go left":
       case "go right":
         $scope.utilities.displayDanger("Use cardinal directions.");
         break;
       case "help":
       case "inventory":
+      case "look":
+      case "take item":
         break;
       default:
         $scope.utilities.displayChoice("I do not know how to do this. Try asking for help.");
