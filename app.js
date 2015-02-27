@@ -32,6 +32,12 @@ rpg.config(function($stateProvider) {
     controller: "Room6Ctrl"
   })
 
+  $stateProvider.state('tunnel', {
+    url: "tunnel",
+    templateUrl: "partials/tunnel.html"
+  })
+
+
 
 
 

@@ -32,6 +32,7 @@ rpg.controller('Room6Ctrl', function Room6Ctrl($scope, $state, UserFactory, Room
         $scope.utilities.displayChoice("You see a big backpack.");
         break;
       case "look backpack":
+      case "open backpack":
         $scope.utilities.displayChoice("You look inside and find a pack of matches and rope.");
         break;
       case "take matches":
