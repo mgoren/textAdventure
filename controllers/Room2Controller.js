@@ -35,6 +35,8 @@ rpg.controller('Room2Ctrl', function Room2Ctrl($scope, $state, UserFactory, Room
       case "scale hole":
       case "climb hole":
       case "climb down":
+      case "use rope":
+      case "rope hole":
         if($scope.utilities.inInventory("rope")) {
           $state.go('tunnel');
         } else
